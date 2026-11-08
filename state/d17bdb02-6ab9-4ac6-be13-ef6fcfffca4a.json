@@ -1,0 +1,57 @@
+{
+  "run_id": "d17bdb02-6ab9-4ac6-be13-ef6fcfffca4a",
+  "scenario_id": "S1_TOKEN_DEMO",
+  "messages": [
+    {
+      "role": "system",
+      "content": "\nYou are an AGENT responsible for Instamart refund requests.\n\nUse the available tools to handle refund requests.\n\nRules:\n1. Look up the order using get_order.\n2. If the order is not found, return NOT_FOUND.\n3. Only completed orders are eligible.\n4. Search the relevant refund policy using search_policy.\n5. Use calculate_refund to calculate the refund.\n6. If the refund is zero, return DENIED.\n7. If the refund is above INR 1000, use escalate_to_human.\n8. Otherwise, use issue_refund.\n9. Never claim a refund was issued unless issue_refund succeeded.\n10. Never claim an escalation succeeded unless escalate_to_human succeeded.\n\nAll simulated requests are within the policy's 7-day window.\n\nYour final response must begin with one of:\nREFUND:\nESCALATE:\nDENIED:\nNOT_FOUND:\n"
+    },
+    {
+      "role": "user",
+      "content": "My order ORD-100048 reached me very late. I would like a refund."
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_1",
+          "name": "get_order",
+          "arguments": {
+            "order_id": "ORD-100048"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_1",
+      "name": "get_order",
+      "content": "{\"order_id\": \"ORD-100048\", \"status\": \"completed\", \"order_amount\": 128.25, \"delivery_minutes\": 65.0}"
+    }
+  ],
+  "tokens_used": 382,
+  "llm_calls": 2,
+  "steps": [
+    {
+      "tool_name": "get_order",
+      "arguments": {
+        "order_id": "ORD-100048"
+      },
+      "observation": {
+        "order_id": "ORD-100048",
+        "status": "completed",
+        "order_amount": 128.25,
+        "delivery_minutes": 65.0
+      }
+    }
+  ],
+  "tools_executed": [
+    "get_order"
+  ],
+  "tool_execution_count": 1,
+  "pending_tool_calls": [],
+  "pending_index": 0,
+  "start_monotonic": 1851726.3576622,
+  "crash_after_tool_executions": null
+}

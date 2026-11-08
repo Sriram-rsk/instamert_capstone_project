@@ -1,0 +1,23 @@
+{
+  "run_id": "7920d92a-9e97-4ca0-aa40-42680a756c91",
+  "scenario_id": "S1_TIMEOUT_DEMO",
+  "messages": [
+    {
+      "role": "system",
+      "content": "\nYou are an AGENT responsible for Instamart refund requests.\n\nUse the available tools to handle refund requests.\n\nRules:\n1. Look up the order using get_order.\n2. If the order is not found, return NOT_FOUND.\n3. Only completed orders are eligible.\n4. Search the relevant refund policy using search_policy.\n5. Use calculate_refund to calculate the refund.\n6. If the refund is zero, return DENIED.\n7. If the refund is above INR 1000, use escalate_to_human.\n8. Otherwise, use issue_refund.\n9. Never claim a refund was issued unless issue_refund succeeded.\n10. Never claim an escalation succeeded unless escalate_to_human succeeded.\n\nAll simulated requests are within the policy's 7-day window.\n\nYour final response must begin with one of:\nREFUND:\nESCALATE:\nDENIED:\nNOT_FOUND:\n"
+    },
+    {
+      "role": "user",
+      "content": "My order ORD-100048 reached me very late. I would like a refund."
+    }
+  ],
+  "tokens_used": 0,
+  "llm_calls": 0,
+  "steps": [],
+  "tools_executed": [],
+  "tool_execution_count": 0,
+  "pending_tool_calls": [],
+  "pending_index": 0,
+  "start_monotonic": 1851771.139962,
+  "crash_after_tool_executions": null
+}
